@@ -22,13 +22,13 @@ module.exports = getInfo = async (link) => {
         comments: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(3) span').text(),
         shares: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(4) span').text(),
         url: {
-          no_wm: $('div.hidden.flex-col.text-center a:nth-child(1)').attr('href'),
-          wm: $('div.hidden.flex-col.text-center a:nth-child(2)').attr('href'),
+          no_wm: $("a:contains('DOWNLOAD (WITHOUT WATERMARK)')").attr("href"),
+          wm: $("a:contains('DOWNLOAD (WITH WATERMARK)')").attr("href"),
         }
       },
       backsound: {
         name: $('div.flex.flex-row.items-center.justify-center.gap-1.mt-5 span').text(),
-        url: $('div.hidden.flex-col.text-center a:nth-child(3)').attr('href')
+        url: $("a:contains('DOWNLOAD AUDIO (MP3)')").attr("href")
       }
     }
   } catch (error) {
