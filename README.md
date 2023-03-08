@@ -7,8 +7,8 @@ npm install tiktok-video-downloader
 ```
 
 ## Changelog
-> ### v1.0.1
-- Fix link download for no wm, with wm, mp3.
+> ### v1.0.2
+- Fix bug.
 
 ## Usage
 ```

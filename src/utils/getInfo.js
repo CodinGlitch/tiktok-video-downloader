@@ -5,7 +5,8 @@ const fs = require('fs');
 module.exports = getInfo = async (link) => {
   const host = 'https://ttsave.app/download'
   const body = { id: link }
-  const res  = await needle("post", host, body, {json: true})
+  const headers = { "User-Agent": "PostmanRuntime/7.31.1" }
+  const res  = await needle("post", host, body, {headers, json: true})
   try {
     const $ = load(res.body)
     return {
