@@ -17,7 +17,7 @@ module.exports = getInfo = async (link) => {
         username: $('div a.font-extrabold.text-blue-400.text-xl.mb-2').text()
       },
       video: {
-        thumbnail: $('div.hidden.flex-col.text-center a:nth-child(5)').attr('href'),
+        thumbnail: $('a[type="cover"]').attr('href'),
         views: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(1) span').text(),
         loves: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(2) span').text(),
         comments: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(3) span').text(),
