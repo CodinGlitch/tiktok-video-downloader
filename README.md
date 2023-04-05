@@ -7,8 +7,9 @@ npm install tiktok-video-downloader
 ```
 
 ## Changelog
-> ### v1.0.3
-- Fix bug thumbnail undefined.
+> ### v1.0.4
+- Fix return undefined.
+- Thumbnail still `undefined`, i'll fix asap.
 
 ## Usage
 ```

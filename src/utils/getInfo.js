@@ -3,12 +3,18 @@ const { load } = require('cheerio');
 const fs = require('fs');
 
 module.exports = getInfo = async (link) => {
-  const host = 'https://ttsave.app/download'
-  const body = { id: link }
-  const headers = { "User-Agent": "PostmanRuntime/7.31.1" }
-  const res  = await needle("post", host, body, {headers, json: true})
+  let host = 'https://ttsave.app';
+  let body, headers,
+    res = await needle('get', host), 
+    $ = load(res.body);
+
   try {
-    const $ = load(res.body)
+    host = `https://ttsave.app/download?mode=video&key=${getKey($('script[type="text/javascript"]'))}`;
+    body = { id: link };
+    headers = { "User-Agent": "PostmanRuntime/7.31.1" };
+    res  = await needle("post", host, body, {headers, json: true});
+    $ = load(res.body);
+
     return {
       success: true,
       author: {
@@ -33,7 +39,7 @@ module.exports = getInfo = async (link) => {
       }
     }
   } catch (error) {
-    const file = 'log/error.json'
+    const file = 'src/log/error.json'
     if (!fs.existsSync(file)) fs.writeFileSync(file, '[]')
     const errLog = JSON.parse(fs.readFileSync(file).toString())
     console.error(error)
@@ -55,3 +61,11 @@ module.exports = getInfo = async (link) => {
     return { success: false }
   }
 }
+
+// function request()
+
+function getKey(page) {
+  const regex = /key=([0-9a-f-]+)/;
+  const key = page.text().match(regex);
+  return key ? key[1] : null;
+};
