@@ -23,6 +23,7 @@ module.exports = getInfo = async (link) => {
         username: $('div a.font-extrabold.text-blue-400.text-xl.mb-2').text()
       },
       video: {
+        title: $("div p").text().trim(),
         thumbnail: $('a[type="cover"]').attr('href'),
         views: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(1) span').text(),
         loves: $('div.flex.flex-row.items-center.justify-center.gap-2.mt-2 div:nth-child(2) span').text(),
